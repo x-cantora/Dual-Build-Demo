@@ -3,7 +3,7 @@ project(dual_build_demo LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-if (PC)
+if (${PC})
     add_compile_definitions(PC_BUILD)
 else()
     add_compile_definitions(BOARD_BUILD)
