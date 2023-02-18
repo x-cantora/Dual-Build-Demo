@@ -23,8 +23,22 @@ void Triangle::setColor(lv_color_t color)
     lv_style_set_line_color(&mStyle, color);
 }
 
+void Triangle::move(int32_t deltaX, int32_t deltaY)
+{
+    for (auto& point : mLinePoints)
+    {
+        point.x += deltaX;
+        point.y += deltaY;
+    }
+    lv_line_set_points(mLine, mLinePoints, NUM_POINTS);
+}
+
 const lv_obj_t* const Triangle::getLvObj() const noexcept
 {
     return mLine;
 }
 
+const lv_point_t* const Triangle::getPoints() const noexcept
+{
+    return mLinePoints;
+}
