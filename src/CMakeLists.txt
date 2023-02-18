@@ -1,5 +1,5 @@
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS})
+add_subdirectory(Renderer)
+add_subdirectory(Widgets)
 
 add_executable(DualBuildDemo
     main.cpp
@@ -8,5 +8,6 @@ add_executable(DualBuildDemo
 target_link_libraries(DualBuildDemo
     PUBLIC
         lvgl::lvgl
-        ${SDL2_LIBRARIES}
+        Renderer
+        Widgets
 )
