@@ -10,4 +10,5 @@ target_link_libraries(DualBuildDemo
         lvgl::lvgl
         Renderer
         Widgets
+        lv_tinygl
 )

@@ -1,6 +1,8 @@
+#include "gears.h"
 #include "lvgl.h"
 #include "SdlRenderer.hpp"
 #include "Triangle.hpp"
+#include "zbuffer.h"
 
 #include <signal.h>
 
@@ -11,21 +13,16 @@ int main()
 #endif
 
     SdlRenderer renderer;
+    auto* sdlBuffer = renderer.display()->driver->draw_buf->buf2;
 
-    lv_obj_set_style_bg_color(lv_scr_act(), lv_color_white(), LV_PART_MAIN);
-    Triangle triangle(lv_scr_act(), {0,0}, {30,30}, {0,60});
-    triangle.setColor(lv_color_black());
+    lv_obj_t* canvas = lv_canvas_create(lv_scr_act());
+    lv_canvas_set_buffer(canvas, sdlBuffer, WIDTH, HEIGHT, LV_IMG_CF_TRUE_COLOR);
+    gears_init(WIDTH, HEIGHT, ZB_MODE_RGBA, sdlBuffer);
 
-    int32_t moveAmount = 1;
-    while (1) 
-    {
-        triangle.move(moveAmount, moveAmount);
-        if (triangle.getPoints()[0].x == WIDTH || triangle.getPoints()[0].x == 0)
-        {
-            moveAmount *= -1;
-        }
-        usleep(1000);
+    while (1) {
+        gears_update();
         renderer.render();
+        usleep(1000);
     }
 
     return 0;

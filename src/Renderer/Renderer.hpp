@@ -12,6 +12,10 @@ class Renderer
 {
 public:
     virtual void render() = 0;
+    lv_disp_t* display()
+    {
+        return mDisplay;
+    }
 
 protected:
     uint32_t mLvglBuffer[NUM_PIXELS];
