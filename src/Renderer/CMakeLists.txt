@@ -1,8 +1,14 @@
-find_package(SDL2 REQUIRED)
+if (${PC})
+    find_package(SDL2 REQUIRED)
+    set(SOURCE Sdl)
+else()
+    set(SOURCE Spi)
+endif()
 
 add_library(Renderer
     STATIC
-        SdlRenderer.cpp
+        Renderer.cpp
+        ${SOURCE}Renderer.cpp
 )
 
 target_include_directories(Renderer
