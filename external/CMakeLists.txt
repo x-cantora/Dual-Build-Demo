@@ -19,7 +19,6 @@ add_library(lv_tinygl
         lv_lib_tinygl/src/memory.c       
         lv_lib_tinygl/src/misc.c         
         lv_lib_tinygl/src/msghandling.c  
-        lv_lib_tinygl/src/objtest.c      
         lv_lib_tinygl/src/oscontext.c    
         lv_lib_tinygl/src/select.c
         lv_lib_tinygl/src/specbuf.c
