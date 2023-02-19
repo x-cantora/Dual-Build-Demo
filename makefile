@@ -3,7 +3,8 @@ build_pc:
 	cmake --build build/gcc
 
 build_target:
-	echo "To Do: Implement this"
+	cmake -GNinja --toolchain tools/arm.cmake -Bbuild/arm -DPC=0
+	cmake --build build/arm
 
 clean:
 	rm -rf build/*
