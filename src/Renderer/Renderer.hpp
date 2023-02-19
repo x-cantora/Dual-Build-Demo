@@ -11,6 +11,9 @@ static const uint32_t NUM_PIXELS {WIDTH * HEIGHT};
 class Renderer
 {
 public:
+    Renderer();
+    ~Renderer();
+
     virtual void render() = 0;
     lv_disp_t* display()
     {
