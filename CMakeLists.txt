@@ -15,8 +15,8 @@ else()
         ${ARDUINO_ROOT}/cores/arduino/*.S 
      ) 
      list(FILTER ARDUION_SOURCES EXCLUDE REGEX "main.cpp") 
-     add_library(ArduinoCore ${ARDUION_SOURCES}) 
-
+     add_library(ArduinoCore ${ARDUION_SOURCES})
+     set(ARDUINO_CORE_LIB ArduinoCore)
 endif()
 
 add_subdirectory(external)

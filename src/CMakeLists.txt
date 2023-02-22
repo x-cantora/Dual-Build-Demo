@@ -11,4 +11,5 @@ target_link_libraries(DualBuildDemo
         Renderer
         Widgets
         lv_tinygl
+        ${ARDUINO_CORE_LIB}
 )
