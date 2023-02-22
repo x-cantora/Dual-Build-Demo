@@ -4,11 +4,11 @@
 
 #include <SDL.h>
 
-class SdlRenderer : public Renderer
+class PcRenderer : public Renderer
 {
 public:
-    SdlRenderer();
-    ~SdlRenderer() = default;
+    PcRenderer();
+    ~PcRenderer() = default;
 
     void render() override;
 

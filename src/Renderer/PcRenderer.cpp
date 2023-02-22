@@ -1,6 +1,6 @@
-#include "SdlRenderer.hpp"
+#include "PcRenderer.hpp"
 
-SdlRenderer::SdlRenderer()
+PcRenderer::PcRenderer()
 {
     SDL_Init(SDL_INIT_VIDEO);
     mWindow = SDL_CreateWindow("PC Build", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
@@ -9,7 +9,7 @@ SdlRenderer::SdlRenderer()
     SDL_UpdateWindowSurface(mWindow);
 }
 
-void SdlRenderer::render()
+void PcRenderer::render()
 {
     auto* surface = SDL_CreateRGBSurfaceFrom(mDisplay->driver->draw_buf->buf2, WIDTH, HEIGHT, 32, 4 * WIDTH, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
     SDL_BlitScaled(surface, nullptr, mWindowSurface, nullptr);

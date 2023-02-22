@@ -1,6 +1,6 @@
 if (${PC})
     find_package(SDL2 REQUIRED)
-    set(SOURCE Sdl)
+    set(SOURCE Pc)
 else()
     set(SOURCE Spi)
 endif()
