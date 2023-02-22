@@ -2,7 +2,7 @@ if (${PC})
     find_package(SDL2 REQUIRED)
     set(SOURCE Pc)
 else()
-    set(SOURCE Spi)
+    set(SOURCE Tft)
 endif()
 
 add_library(Renderer

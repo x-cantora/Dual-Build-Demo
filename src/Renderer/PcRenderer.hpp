@@ -10,7 +10,7 @@ public:
     PcRenderer();
     ~PcRenderer() = default;
 
-    void render() override;
+    void render() override final;
 
 private:
     SDL_Window* mWindow = nullptr;
