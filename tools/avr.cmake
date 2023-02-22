@@ -3,7 +3,7 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR avr)
 set(CMAKE_SYSTEM_VERSION ${CMAKE_HOST_SYSTEM_VERSION})
 
-set(AVR_MCU "atmega328p")
+set(AVR_MCU "atmega2560")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -24,7 +24,7 @@ set(AVR_SIZE           avr-size    CACHE PATH "size"    FORCE)
 
 set(CMAKE_C_FLAGS "-mmcu=${AVR_MCU} -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections" CACHE FILEPATH "")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} CACHE FILEPATH "")
-set(CMAKE_EXE_LINKER_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${PROJECT_BINARY_DIR}/Dual-Build-Demo.map" CACHE FILEPATH "")
+set(CMAKE_EXE_LINKER_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${PROJECT_BINARY_DIR}/Dual-Build-Demo.map -Wl,--gc-sections" CACHE FILEPATH "")
 
 add_definitions(-DF_CPU=16000000)
 set(ARDUINO_ROOT /usr/share/arduino/hardware/arduino/)
