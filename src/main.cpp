@@ -1,6 +1,6 @@
 #include "gears.h"
 #include "lvgl.h"
-#include "SdlRenderer.hpp"
+#include "PcRenderer.hpp"
 #include "Triangle.hpp"
 #include "zbuffer.h"
 
@@ -12,7 +12,7 @@ int main()
     signal(SIGINT, [](int){exit(0);});
 #endif
 
-    SdlRenderer renderer;
+    PcRenderer renderer;
     auto* sdlBuffer = renderer.display()->driver->draw_buf->buf2;
 
     lv_obj_t* canvas = lv_canvas_create(lv_scr_act());
@@ -22,7 +22,6 @@ int main()
     while (1) {
         gears_update();
         renderer.render();
-        usleep(1000);
     }
 
     return 0;
