@@ -2,7 +2,7 @@
 
 #include "lvgl.h"
 
-#include <cstdint>
+#include <stdint.h>
 
 static const uint32_t WIDTH {320};
 static const uint32_t HEIGHT {240};
@@ -12,7 +12,7 @@ class Renderer
 {
 public:
     Renderer();
-    ~Renderer();
+    ~Renderer() = default;
 
     virtual void render() = 0;
     lv_disp_t* display()
@@ -21,7 +21,7 @@ public:
     }
 
 protected:
-    uint32_t mLvglBuffer[NUM_PIXELS];
+    lv_color_t mLvglBuffer[NUM_PIXELS];
     lv_disp_drv_t mDisplayDriver;
     lv_disp_draw_buf_t mDisplayBuffer;
     lv_disp_t* mDisplay = nullptr;

@@ -15,4 +15,5 @@ public:
 private:
     SDL_Window* mWindow = nullptr;
     SDL_Surface* mWindowSurface = nullptr;
+    SDL_Surface* mRenderSurface = nullptr;
 };

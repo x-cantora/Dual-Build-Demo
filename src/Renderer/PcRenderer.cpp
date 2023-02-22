@@ -11,9 +11,9 @@ PcRenderer::PcRenderer()
 
 void PcRenderer::render()
 {
-    auto* surface = SDL_CreateRGBSurfaceFrom(mDisplay->driver->draw_buf->buf2, WIDTH, HEIGHT, 32, 4 * WIDTH, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-    SDL_BlitScaled(surface, nullptr, mWindowSurface, nullptr);
+    mRenderSurface = SDL_CreateRGBSurfaceWithFormatFrom(mDisplay->driver->draw_buf->buf2, WIDTH, HEIGHT, sizeof(lv_color_t), sizeof(lv_color_t) * WIDTH, SDL_PIXELFORMAT_BGR565);
+    SDL_BlitScaled(mRenderSurface, nullptr, mWindowSurface, nullptr);
     SDL_UpdateWindowSurface(mWindow);
-    SDL_FreeSurface(surface);
+    SDL_FreeSurface(mRenderSurface);
     tick();
 }

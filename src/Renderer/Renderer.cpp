@@ -1,6 +1,6 @@
 #include "Renderer.hpp"
 
-static uint32_t secondaryBuffer[NUM_PIXELS];
+static lv_color_t secondaryBuffer[NUM_PIXELS];
 
 static void flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color)
 {
@@ -8,7 +8,7 @@ static void flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color)
     {
         for(int32_t x = area->x1; x <= area->x2; x++)
         {
-            secondaryBuffer[(y * WIDTH) + x] = color->full;
+            secondaryBuffer[(y * WIDTH) + x].full = color->full;
             color++;
         }
     }
@@ -26,9 +26,4 @@ Renderer::Renderer()
     mDisplayDriver.ver_res = HEIGHT;               
 
     mDisplay = lv_disp_drv_register(&mDisplayDriver);
-}
-
-Renderer::~Renderer()
-{
-    lv_deinit();
 }
