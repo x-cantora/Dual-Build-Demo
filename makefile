@@ -1,5 +1,5 @@
 build_pc:
-	cmake -GNinja --toolchain tools/gcc.cmake -Bbuild/gcc -DPC=1
+	cmake -GNinja --toolchain tools/gcc.cmake -Bbuild/gcc -DPC=1 -DCMAKE_BUILD_TYPE=Debug
 	cmake --build build/gcc
 
 build_target:
