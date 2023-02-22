@@ -4,3 +4,6 @@ set(CMAKE_SYSTEM_VERSION ${CMAKE_HOST_SYSTEM_VERSION})
 
 set(CMAKE_C_COMPILER gcc CACHE FILEPATH "")
 set(CMAKE_CXX_COMPILER g++ CACHE FILEPATH "")
+
+add_compile_options("-fsanitize=address")
+add_link_options("-fsanitize=address")
