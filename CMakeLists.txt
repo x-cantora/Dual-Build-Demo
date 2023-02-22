@@ -8,15 +8,15 @@ if (${PC})
     add_compile_definitions(PC_BUILD)
 else()
     add_compile_definitions(BOARD_BUILD)
-     file(GLOB ARDUION_SOURCES LIST_DIRECTORIES FALSE 
+    file(GLOB ARDUINO_SOURCES LIST_DIRECTORIES FALSE 
         ${ARDUINO_ROOT}/cores/arduino/*.c 
         ${ARDUINO_ROOT}/cores/arduino/*.cpp 
         ${ARDUINO_ROOT}/cores/arduino/*.s 
         ${ARDUINO_ROOT}/cores/arduino/*.S 
-     ) 
-     list(FILTER ARDUION_SOURCES EXCLUDE REGEX "main.cpp") 
-     add_library(ArduinoCore ${ARDUION_SOURCES})
-     set(ARDUINO_CORE_LIB ArduinoCore)
+    ) 
+    list(FILTER ARDUINO_SOURCES EXCLUDE REGEX "main.cpp") 
+    add_library(ArduinoCore ${ARDUINO_SOURCES})
+    set(ARDUINO_CORE_LIB ArduinoCore)
 endif()
 
 add_subdirectory(external)

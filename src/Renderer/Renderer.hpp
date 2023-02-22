@@ -14,10 +14,16 @@ public:
     Renderer();
     ~Renderer() = default;
 
-    virtual void render() = 0;
+    virtual void flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color) = 0;
     lv_disp_t* display()
     {
         return mDisplay;
+    }
+
+    void tick(uint32_t numTicks = 1)
+    {
+        lv_tick_inc(numTicks);
+        lv_timer_handler();
     }
 
 protected:
@@ -26,9 +32,4 @@ protected:
     lv_disp_draw_buf_t mDisplayBuffer;
     lv_disp_t* mDisplay = nullptr;
 
-    void tick(uint32_t numTicks = 1)
-    {
-        lv_tick_inc(numTicks);
-        lv_timer_handler();
-    }
 };

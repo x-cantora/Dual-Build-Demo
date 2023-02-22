@@ -27,7 +27,7 @@ int main()
 
     while (1)
     {
-        renderer.render();
+        renderer.tick();
     }
 
     return 0;
