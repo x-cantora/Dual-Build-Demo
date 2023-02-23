@@ -26,7 +26,8 @@ make \
 arduino \
 gcc-avr \
 avrdude \
-avr-libc
+avr-libc \
+ninja-build
 ```
 
 # Build Instructions
