@@ -11,13 +11,18 @@ static const uint32_t NUM_PIXELS {WIDTH * HEIGHT};
 class Renderer
 {
 public:
-    Renderer();
+    Renderer()
+    {
+        lv_init();            
+    }
+
     ~Renderer() = default;
 
     virtual void flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color) = 0;
-    lv_disp_t* display()
+
+    lv_color_t* buffer()
     {
-        return mDisplay;
+        return mLvglBuffer;
     }
 
     void tick(uint32_t numTicks = 1)
@@ -31,5 +36,4 @@ protected:
     lv_disp_drv_t mDisplayDriver;
     lv_disp_draw_buf_t mDisplayBuffer;
     lv_disp_t* mDisplay = nullptr;
-
 };

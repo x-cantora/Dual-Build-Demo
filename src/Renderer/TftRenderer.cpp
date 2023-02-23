@@ -4,6 +4,7 @@ void tftFlush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color)
 {
     auto* renderer = static_cast<TftRenderer*>(drv->user_data);
     renderer->flush(drv, area, color);
+    lv_disp_flush_ready(drv);
 }
 
 TftRenderer::TftRenderer()
@@ -28,6 +29,4 @@ void TftRenderer::flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* c
     // mTft.setAddrWindow(area->x1, area->y1, w, h);
     // mTft.pushColors(&color->full, w * h, true);
     // mTft.endWrite();
-
-    lv_disp_flush_ready(drv);
 }

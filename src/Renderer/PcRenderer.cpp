@@ -4,6 +4,7 @@ static void sdlFlush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* colo
 {
     auto* renderer = static_cast<PcRenderer*>(drv->user_data);
     renderer->flush(drv, area, color);
+    lv_disp_flush_ready(drv);
 }
 
 PcRenderer::PcRenderer()
@@ -34,9 +35,9 @@ void PcRenderer::flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* co
             color++;
         }
     }
-    mRenderSurface = SDL_CreateRGBSurfaceWithFormatFrom(mDisplay->driver->draw_buf->buf2, WIDTH, HEIGHT, sizeof(lv_color_t), sizeof(lv_color_t) * WIDTH, SDL_PIXELFORMAT_BGR565);
+
+    mRenderSurface = SDL_CreateRGBSurfaceWithFormatFrom(mSdlBuffer, WIDTH, HEIGHT, sizeof(lv_color_t), sizeof(lv_color_t) * WIDTH, SDL_PIXELFORMAT_BGR565);
     SDL_BlitScaled(mRenderSurface, nullptr, mWindowSurface, nullptr);
     SDL_UpdateWindowSurface(mWindow);
     SDL_FreeSurface(mRenderSurface);
-    lv_disp_flush_ready(drv);
 }

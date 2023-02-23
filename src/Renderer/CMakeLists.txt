@@ -7,7 +7,6 @@ endif()
 
 add_library(Renderer
     STATIC
-        Renderer.cpp
         ${SOURCE}Renderer.cpp
 )
 
