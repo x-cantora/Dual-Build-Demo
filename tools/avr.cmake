@@ -24,10 +24,11 @@ set(AVR_SIZE           avr-size    CACHE PATH "size"    FORCE)
 
 set(CMAKE_C_FLAGS "-mmcu=${AVR_MCU} -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections" CACHE FILEPATH "")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} CACHE FILEPATH "")
+set(CMAKE_ASM_FLAGS ${CMAKE_C_FLAGS} CACHE FILEPATH "")
 set(CMAKE_EXE_LINKER_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${PROJECT_BINARY_DIR}/Dual-Build-Demo.map -Wl,--gc-sections" CACHE FILEPATH "")
 
 add_definitions(-DF_CPU=16000000)
-set(ARDUINO_ROOT /usr/share/arduino/hardware/arduino/)
+set(ARDUINO_ROOT /usr/share/arduino/hardware/arduino/avr)
 include_directories(
   ${ARDUINO_ROOT}/cores/arduino
   ${ARDUINO_ROOT}/variants/standard
