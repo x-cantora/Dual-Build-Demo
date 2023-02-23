@@ -7,9 +7,9 @@ build_target:
 	cmake --build build/avr
 
 flash_target:
-	avr-objdump -h -S build/avr/bin/DualBuildDemo > build/avr/DualBuildDemo.lst
+	avr-objdump -h -S build/avr/bin/DualBuildDemo > build/avr/bin/DualBuildDemo.lst
 	avr-objcopy -j .text -j .data -I ihex build/avr/bin/DualBuildDemo build/avr/bin/DualBuildDemo.hex
-	avrdude -b115200 -carduino -patmega328p -U flash:w:build/avr/bin/DualBuildDemo.hex -P $(target)
+	avrdude -p m2560 -c wiring -D -P $(target) -b 115200 -F -U flash:w:build/avr/bin/DualBuildDemo.hex
 
 clean:
 	rm -rf build/*
