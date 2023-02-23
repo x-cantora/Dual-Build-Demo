@@ -32,11 +32,6 @@ add_library(lv_tinygl
         lv_lib_tinygl/src/ztriangle.c
 )
 
-target_link_libraries(lv_tinygl
-    PUBLIC
-        lvgl::lvgl
-)
-
 target_include_directories(lv_tinygl
     PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}
