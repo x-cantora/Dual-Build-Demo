@@ -9,10 +9,10 @@ if (${PC})
 else()
     add_compile_definitions(BOARD_BUILD)
     file(GLOB ARDUINO_SOURCES LIST_DIRECTORIES FALSE
-        ${ARDUINO_ROOT}/cores/arduino/*.c
-        ${ARDUINO_ROOT}/cores/arduino/*.cpp
-        ${ARDUINO_ROOT}/cores/arduino/*.s
-        ${ARDUINO_ROOT}/cores/arduino/*.S
+        ${ARDUINO_TOOLCHAIN_ROOT}/cores/arduino/*.c
+        ${ARDUINO_TOOLCHAIN_ROOT}/cores/arduino/*.cpp
+        ${ARDUINO_TOOLCHAIN_ROOT}/cores/arduino/*.s
+        ${ARDUINO_TOOLCHAIN_ROOT}/cores/arduino/*.S
     )
     list(FILTER ARDUINO_SOURCES EXCLUDE REGEX "main.cpp")
     add_library(ArduinoCore ${ARDUINO_SOURCES})
