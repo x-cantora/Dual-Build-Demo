@@ -8,6 +8,14 @@ static const uint32_t WIDTH {320};
 static const uint32_t HEIGHT {240};
 static const uint32_t NUM_PIXELS {WIDTH * HEIGHT};
 
+template<class T>
+static void flushArea(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color)
+{
+    auto* renderer = static_cast<T*>(drv->user_data);
+    renderer->flush(drv, area, color);
+    lv_disp_flush_ready(drv);
+}
+
 class Renderer
 {
 public:

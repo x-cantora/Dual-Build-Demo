@@ -1,20 +1,13 @@
 #include "PcRenderer.hpp"
 
-static void sdlFlush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color)
-{
-    auto* renderer = static_cast<PcRenderer*>(drv->user_data);
-    renderer->flush(drv, area, color);
-    lv_disp_flush_ready(drv);
-}
-
 PcRenderer::PcRenderer()
 {
-    lv_disp_draw_buf_init(&mDisplayBuffer, mLvglBuffer, mSdlBuffer, WIDTH * HEIGHT);
+    lv_disp_draw_buf_init(&mDisplayBuffer, mLvglBuffer, nullptr, WIDTH * HEIGHT);
     lv_disp_drv_init(&mDisplayDriver); 
     mDisplayDriver.draw_buf = &mDisplayBuffer;   
     mDisplayDriver.hor_res = WIDTH;               
     mDisplayDriver.ver_res = HEIGHT;   
-    mDisplayDriver.flush_cb = sdlFlush;
+    mDisplayDriver.flush_cb = flushArea<PcRenderer>;
     mDisplayDriver.user_data = this;
     mDisplay = lv_disp_drv_register(&mDisplayDriver);
 
@@ -31,12 +24,12 @@ void PcRenderer::flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* co
     {
         for(int32_t x = area->x1; x <= area->x2; x++)
         {
-            mSdlBuffer[(y * WIDTH) + x].full = color->full;
+            mLvglBuffer[(y * WIDTH) + x].full = color->full;
             color++;
         }
     }
 
-    mRenderSurface = SDL_CreateRGBSurfaceWithFormatFrom(mSdlBuffer, WIDTH, HEIGHT, sizeof(lv_color_t), sizeof(lv_color_t) * WIDTH, SDL_PIXELFORMAT_BGR565);
+    mRenderSurface = SDL_CreateRGBSurfaceWithFormatFrom(mLvglBuffer, WIDTH, HEIGHT, sizeof(lv_color_t), sizeof(lv_color_t) * WIDTH, SDL_PIXELFORMAT_BGR565);
     SDL_BlitScaled(mRenderSurface, nullptr, mWindowSurface, nullptr);
     SDL_UpdateWindowSurface(mWindow);
     SDL_FreeSurface(mRenderSurface);
