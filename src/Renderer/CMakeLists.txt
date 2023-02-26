@@ -3,6 +3,7 @@ if (${PC})
     set(SOURCE Pc)
 else()
     set(SOURCE Tft)
+    set(ARDUINO_LIBS Tft)
 endif()
 
 add_library(Renderer
@@ -19,5 +20,6 @@ target_include_directories(Renderer
 target_link_libraries(Renderer
     PUBLIC
         lvgl::lvgl
+        ${ARDUINO_LIBS}
         ${SDL2_LIBRARIES}
 )

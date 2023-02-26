@@ -13,9 +13,8 @@ class Renderer
 public:
     Renderer()
     {
-        lv_init();            
+        lv_init();
     }
-
     ~Renderer() = default;
 
     virtual void flush(lv_disp_drv_t* drv, const lv_area_t* area, lv_color_t* color) = 0;
