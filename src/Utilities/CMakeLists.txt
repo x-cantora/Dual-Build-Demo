@@ -1,4 +1,4 @@
-set(ARDUINO_LIBRARY_PATH /home/alec/Arduino/libraries/)
+set(ARDUINO_LIBRARY_PATH $ENV{HOME}/Arduino/libraries/)
 
 # Spi Library
 add_library(Spi ${ARDUINO_TOOLCHAIN_ROOT}/libraries/SPI/src/SPI.cpp)
